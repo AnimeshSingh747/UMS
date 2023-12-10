@@ -16,11 +16,7 @@ public class Teacher extends Person {
         course.setTeacher(this);
     }
 
-    public List<String> displayCoursesTaught() {
-        List<String> courseNames = new ArrayList<>();
-        for (Course course : coursesTaught) {
-            courseNames.add(course.getName());
-        }
-        return courseNames;
+    public List<Course> displayCoursesTaught() {
+        return coursesTaught;
     }
 }

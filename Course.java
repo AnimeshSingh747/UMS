@@ -1,18 +1,20 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 public class Course {
     private String courseCode;
     private String name;
     private List<Student> students;
     private Teacher teacher;
-
+    private Map<String, Integer> enrollmentCount;
+    
     public Course(String courseCode, String name) {
         this.courseCode = courseCode;
         this.name = name;
         this.students = new ArrayList<>();
+        this.enrollmentCount = new HashMap<>();
     }
 
     public String getName() {
@@ -21,10 +23,12 @@ public class Course {
 
     public void addStudent(Student student) {
         students.add(student);
+        enrollmentCount.put(name, enrollmentCount.getOrDefault(name, 0) + 1);
     }
 
     public void removeStudent(Student student) {
         students.remove(student);
+        enrollmentCount.put(name, enrollmentCount.getOrDefault(name, 0) - 1);
     }
 
     public void setTeacher(Teacher teacher) {
@@ -50,5 +54,13 @@ public class Course {
             report.put(student.name, marks);
         }
         return report;
+    }
+
+    public Map<String, Integer> getEnrollmentCount() {
+        return enrollmentCount;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
     }
 }
